@@ -57,7 +57,7 @@ export function JourneyPath() {
       <div className="mx-auto w-full max-w-7xl">
         <div className="max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-primary">The path forward</p>
-          <h2 id="journey-title" className="mt-5 font-display text-5xl font-black leading-none text-foreground sm:text-7xl">
+          <h2 id="journey-title" className="mt-5 font-display text-4xl font-black leading-none text-foreground sm:text-7xl">
             ONE CLEAR <span className="text-outline block">ROUTE.</span>
           </h2>
           <p className="mt-7 text-sm leading-7 text-muted-foreground sm:text-base">

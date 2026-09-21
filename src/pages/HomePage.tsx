@@ -69,15 +69,15 @@ const trustMetrics: TrustMetric[] = [
 const services: Service[] = [
   {
     number: "01",
-    kicker: "Revenue cycle, simplified",
+    kicker: "Front desk + billing",
     title: "Medical",
     accent: "Billing",
-    description: "Clean claims, faster reimbursements, and complete revenue-cycle support for growing practices.",
+    description: "Remote front desk and the full billing cycle — calls, EMR, eligibility, claims, posting, and reporting.",
     metric: "98%",
     metricLabel: "clean claim rate",
     icon: CircleDollarSign,
     image: billingImg,
-    imageAlt: "Medical billing desk with revenue charts and stethoscope under violet light",
+    imageAlt: "Medical billing desk with revenue charts and stethoscope under blue light",
   },
   {
     number: "02",
@@ -89,7 +89,7 @@ const services: Service[] = [
     metricLabel: "structured intake",
     icon: ClipboardCheck,
     image: screeningImg,
-    imageAlt: "Nurse screening a patient with a tablet in a violet-lit clinic",
+    imageAlt: "Nurse screening a patient with a tablet in a blue-lit clinic",
   },
   {
     number: "03",
@@ -168,7 +168,7 @@ const services: Service[] = [
 const expertiseServices: Array<Pick<Service, "title" | "description" | "icon"> & { href?: string }> = [
   {
     title: "Medical Billing",
-    description: "Clean claims, faster reimbursements, and complete revenue-cycle support for growing practices.",
+    description: "Remote front desk plus the full billing cycle — calls, EMR, scheduling, eligibility, claims, and reporting.",
     icon: CircleDollarSign,
     href: "/medical-billing-services",
   },
@@ -366,20 +366,22 @@ export function HomePage() {
                     height={768}
                     className="absolute inset-0 h-full w-full object-cover"
                   />
+                  <div className="pointer-events-none absolute inset-0 bg-primary/25 mix-blend-soft-light" aria-hidden="true" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-primary/10" aria-hidden="true" />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/45 to-background/15" aria-hidden="true" />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-transparent" aria-hidden="true" />
 
                   <div className="relative z-10 mx-auto w-full max-w-6xl">
                     <div className="max-w-2xl text-center sm:text-left">
-                      <p className="mb-4 flex items-center justify-center gap-3 text-[10px] font-bold uppercase tracking-[0.3em] text-primary sm:justify-start">
+                      <p className="mb-4 flex flex-wrap items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-primary sm:justify-start sm:gap-3 sm:tracking-[0.3em]">
                         <span className="service-icon-badge static" aria-hidden="true">
                           <Icon className="size-5" strokeWidth={1.6} />
                         </span>
                         <span className="text-muted-foreground">{service.number}</span>
-                        <span className="h-px w-8 bg-primary/50" aria-hidden="true" />
+                        <span className="h-px w-6 bg-primary/50 sm:w-8" aria-hidden="true" />
                         {service.kicker}
                       </p>
-                      <h2 className="font-display text-5xl font-bold leading-[0.98] tracking-normal text-foreground drop-shadow-[0_2px_18px_rgba(0,0,0,0.55)] sm:text-7xl lg:text-8xl">
+                      <h2 className="font-display text-[2.35rem] font-bold leading-[0.98] tracking-normal text-foreground drop-shadow-[0_2px_18px_rgba(0,0,0,0.55)] sm:text-7xl lg:text-8xl">
                         {service.title}
                         <span className="text-electric block">{service.accent}</span>
                       </h2>
@@ -391,8 +393,8 @@ export function HomePage() {
                         <span className="h-8 w-px bg-foreground/25" />
                         <div className="text-[10px] uppercase text-foreground/70">{service.metricLabel}</div>
                       </div>
-                      <div className="mt-8 flex justify-center sm:justify-start">
-                        <a href="#contact" className="inline-flex h-12 items-center gap-2 rounded-lg bg-secondary px-6 text-sm font-bold text-secondary-foreground transition-transform hover:-translate-y-0.5">
+                      <div className="mt-8 flex w-full justify-center sm:w-auto sm:justify-start">
+                        <a href="#contact" className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-secondary px-6 text-sm font-bold text-secondary-foreground transition-transform hover:-translate-y-0.5 sm:w-auto">
                           Book a call <ArrowRight className="size-4" aria-hidden="true" />
                         </a>
                       </div>
@@ -459,7 +461,7 @@ export function HomePage() {
         <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[0.86fr_1.14fr] lg:gap-16">
           <div>
             <p className="text-xs font-bold uppercase text-primary">About us</p>
-            <h2 className="mt-5 max-w-xl font-display text-5xl font-bold leading-[1.02] tracking-normal text-foreground sm:text-6xl lg:text-7xl">
+            <h2 className="mt-5 max-w-xl font-display text-4xl font-bold leading-[1.02] tracking-normal text-foreground sm:text-6xl lg:text-7xl">
               One team behind every
               <span className="text-electric block">moving part.</span>
             </h2>
@@ -493,7 +495,7 @@ export function HomePage() {
           <div className="h-px w-12 bg-primary" aria-hidden="true" />
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Our Expertise</span>
         </div>
-        <h2 className="font-display text-5xl font-black leading-none tracking-normal text-foreground sm:text-7xl lg:text-8xl">
+        <h2 className="font-display text-4xl font-black leading-none tracking-normal text-foreground sm:text-7xl lg:text-8xl">
           SPECIALIZED
           <span className="text-outline block">SOLUTIONS.</span>
         </h2>
@@ -550,7 +552,7 @@ export function HomePage() {
       <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <p className="text-xs font-bold uppercase text-primary">Why Agenci</p>
-          <h2 id="why-agenci-title" className="mt-5 max-w-lg font-display text-5xl font-black leading-[1.02] text-foreground sm:text-6xl">
+          <h2 id="why-agenci-title" className="mt-5 max-w-lg font-display text-4xl font-black leading-[1.02] text-foreground sm:text-6xl">
             One partner.<br /><span className="text-electric">Built to deliver.</span>
           </h2>
           <p className="mt-7 max-w-md text-base leading-8 text-muted-foreground">
@@ -585,7 +587,7 @@ export function HomePage() {
       <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
         <div>
           <p className="text-xs font-bold uppercase text-primary">How we work</p>
-          <h2 id="process-title" className="mt-5 font-display text-5xl font-black leading-none text-foreground sm:text-7xl">
+          <h2 id="process-title" className="mt-5 font-display text-4xl font-black leading-none text-foreground sm:text-7xl">
             SIMPLE BY <span className="text-outline block">DESIGN.</span>
           </h2>
         </div>
@@ -617,7 +619,7 @@ export function HomePage() {
     <div className="mx-auto grid w-full max-w-7xl gap-16 lg:grid-cols-2 lg:gap-24">
       <div>
         <p className="text-xs font-bold uppercase text-primary">Built around your goals</p>
-        <h2 id="partnership-title" className="mt-5 max-w-xl font-display text-5xl font-black leading-[1.02] text-foreground sm:text-6xl">
+        <h2 id="partnership-title" className="mt-5 max-w-xl font-display text-4xl font-black leading-[1.02] text-foreground sm:text-6xl">
           Support that feels like an <span className="text-electric">extension of your team.</span>
         </h2>
         <p className="mt-7 max-w-xl text-base leading-8 text-muted-foreground">
@@ -627,12 +629,12 @@ export function HomePage() {
 
       <div className="border-t border-border">
         {partnerPriorities.map((priority, index) => (
-          <div key={priority} className="flex min-h-24 items-center gap-5 border-b border-border py-5">
+          <div key={priority} className="flex min-h-20 items-center gap-3 border-b border-border py-5 sm:min-h-24 sm:gap-5">
             <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-primary/50 text-primary" aria-hidden="true">
               <Check className="size-4" />
             </span>
-            <p className="font-display text-lg font-semibold text-foreground sm:text-xl">{priority}</p>
-            <span className="ml-auto font-display text-xs text-muted-foreground">0{index + 1}</span>
+            <p className="font-display text-base font-semibold text-foreground sm:text-xl">{priority}</p>
+            <span className="ml-auto shrink-0 font-display text-xs text-muted-foreground">0{index + 1}</span>
           </div>
         ))}
       </div>
@@ -645,7 +647,7 @@ export function HomePage() {
     <div className="mx-auto grid w-full max-w-6xl gap-14 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
       <div>
         <p className="text-xs font-bold uppercase text-primary">Frequently asked</p>
-        <h2 id="faq-title" className="mt-5 font-display text-5xl font-black leading-none text-foreground sm:text-6xl">Questions,<br /><span className="text-outline">answered.</span></h2>
+        <h2 id="faq-title" className="mt-5 font-display text-4xl font-black leading-none text-foreground sm:text-6xl">Questions,<br /><span className="text-outline">answered.</span></h2>
         <p className="mt-7 max-w-sm text-sm leading-7 text-muted-foreground">Need something more specific? Start a conversation and we’ll point you in the right direction.</p>
         <a href="mailto:hello@agenci.com" className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-foreground transition-colors hover:text-primary">
           <Mail className="size-4" aria-hidden="true" /> hello@agenci.com
@@ -655,12 +657,12 @@ export function HomePage() {
       <div className="border-t border-border">
         {faqs.map((faq, index) => (
           <details key={faq.question} className="group border-b border-border py-1">
-            <summary className="flex min-h-24 cursor-pointer list-none items-center gap-5 py-5 text-left [&::-webkit-details-marker]:hidden">
-              <span className="font-display text-xs font-bold text-primary">0{index + 1}</span>
-              <span className="font-display text-lg font-bold text-foreground sm:text-xl">{faq.question}</span>
-              <ChevronDown className="ml-auto size-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180 group-open:text-primary" aria-hidden="true" />
+            <summary className="flex min-h-20 cursor-pointer list-none items-start gap-3 py-5 text-left sm:min-h-24 sm:items-center sm:gap-5 [&::-webkit-details-marker]:hidden">
+              <span className="mt-1 font-display text-xs font-bold text-primary sm:mt-0">0{index + 1}</span>
+              <span className="font-display text-base font-bold text-foreground sm:text-xl">{faq.question}</span>
+              <ChevronDown className="ml-auto mt-1 size-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180 group-open:text-primary sm:mt-0" aria-hidden="true" />
             </summary>
-            <p className="max-w-2xl pb-8 pl-10 pr-8 text-sm leading-7 text-muted-foreground">{faq.answer}</p>
+            <p className="max-w-2xl pb-8 pl-8 pr-4 text-sm leading-7 text-muted-foreground sm:pl-10 sm:pr-8">{faq.answer}</p>
           </details>
         ))}
       </div>

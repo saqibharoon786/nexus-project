@@ -32,7 +32,7 @@ export function EnquiryForm({ defaultService }: { defaultService?: string }) {
       <div className="mx-auto grid w-full max-w-7xl gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-20">
         <div>
           <p className="text-xs font-bold uppercase text-primary">Start a conversation</p>
-          <h2 id="enquiry-title" className="mt-5 max-w-xl font-display text-5xl font-black leading-[1.02] text-foreground sm:text-6xl">
+          <h2 id="enquiry-title" className="mt-5 max-w-xl font-display text-4xl font-black leading-[1.02] text-foreground sm:text-6xl">
             Tell us what your team <span className="text-electric">needs next.</span>
           </h2>
           <p className="mt-7 max-w-lg text-base leading-8 text-muted-foreground">
@@ -76,7 +76,7 @@ export function EnquiryForm({ defaultService }: { defaultService?: string }) {
           </label>
           <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs leading-5 text-muted-foreground">We’ll review your enquiry and get back to you shortly.</p>
-            <Button type="submit" variant="secondary" className="h-12 shrink-0 px-6 font-bold">
+            <Button type="submit" variant="secondary" className="h-12 w-full shrink-0 px-6 font-bold sm:w-auto">
               Send enquiry <ArrowRight aria-hidden="true" />
             </Button>
           </div>

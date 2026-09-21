@@ -1,21 +1,25 @@
 import {
   ArrowRight,
   BadgeCheck,
+  BarChart3,
+  CalendarCheck,
   ChevronDown,
   CircleDollarSign,
   ClipboardCheck,
   FileCheck2,
-  HeartPulse,
+  FileText,
+  Headset,
   Layers3,
   Lock,
   Mail,
   Phone,
+  PhoneIncoming,
   RefreshCcw,
   ShieldCheck,
   Stethoscope,
+  Upload,
   UserRoundCheck,
   Wallet,
-  BarChart3,
   type LucideIcon,
 } from "lucide-react";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
@@ -23,144 +27,103 @@ import { Seo } from "@/components/site/Seo";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 
-const faqs = [
+const frontDeskOps: { title: string; description: string; icon: LucideIcon }[] = [
   {
-    question: "What do medical billing services include?",
-    answer:
-      "Medical billing services cover the full revenue cycle: insurance eligibility verification, medical coding, claim submission, payment posting, denial management, A/R follow-up, patient billing, and reporting. HS Partners also includes credentialing and prior authorization support.",
+    title: "Medical Assistant Support",
+    description: "Remote medical assistants help your clinic stay organized — intake, follow-ups, and day-to-day clinical admin without adding in-office staff.",
+    icon: Stethoscope,
   },
   {
-    question: "How much do medical billing services cost?",
-    answer:
-      "Most companies charge between roughly 4% and 10% of monthly collections, depending on specialty, volume, and services included. Others use flat monthly or per-claim pricing. We state everything upfront so you can compare like for like, with no surprise setup, software, or reporting fees.",
+    title: "Incoming Calls",
+    description: "We answer, route, and document patient and payer calls so your front desk never loses a message during busy hours.",
+    icon: PhoneIncoming,
   },
   {
-    question: "Is outsourcing medical billing worth it?",
-    answer:
-      "For most practices, yes. Outsourcing removes the cost of salaries, benefits, training, and billing software, and it usually improves collections through specialized expertise and dedicated denial follow-up. It also gives you predictable costs and frees your staff to focus on patients.",
+    title: "EMR Documentation",
+    description: "Notes, encounters, and chart updates are entered in your EMR so providers stay current without extra after-hours typing.",
+    icon: FileText,
   },
   {
-    question: "How long does it take to get paid after outsourcing?",
-    answer:
-      "Clean claims are typically submitted within 24–48 hours of service, and most payers pay within 14–45 days, depending on the payer and claim type. During onboarding, we also work existing A/R, so recoveries often begin in the first few weeks.",
+    title: "Patient Scheduling",
+    description: "New visits, follow-ups, reschedules, and reminders are booked to your templates so the calendar stays full and accurate.",
+    icon: CalendarCheck,
   },
   {
-    question: "How do you reduce claim denials?",
-    answer:
-      "We prevent denials at three points: before the visit (eligibility and authorization checks), before submission (coding review and claim scrubbing), and after denial (root-cause analysis and appeals). We also share denial trends with your team so the underlying issues get fixed.",
-  },
-  {
-    question: "Do you work with my EHR or practice management software?",
-    answer:
-      "Yes. We work with major platforms such as Epic, Athenahealth, eClinicalWorks, NextGen, and Tebra, plus many others. We work inside your existing system, so you don't have to switch software or retrain staff.",
-  },
-  {
-    question: "Are your medical billing services HIPAA compliant?",
-    answer:
-      "Yes. We follow HIPAA privacy and security requirements, sign a Business Associate Agreement (BAA), use encrypted systems, and limit data access by role. Our staff receive regular compliance training.",
-  },
-  {
-    question: "Will I still have visibility and control over my billing?",
-    answer:
-      "Absolutely. You get access to real-time reports and monthly dashboards showing collections, denial rate, days in A/R, and aging. Your dedicated account manager is available for regular reviews, and you own your data at all times.",
-  },
-  {
-    question: "What's the difference between medical billing and medical coding?",
-    answer:
-      "Medical coding converts diagnoses, procedures, and services into standardized codes (ICD-10, CPT, HCPCS). Medical billing uses those codes to create and submit claims and collect payment. They are closely connected, and errors in coding are one of the main causes of denied claims.",
-  },
-  {
-    question: "How do I switch from my current billing company or in-house team?",
-    answer:
-      "Switching is simple. We start with a free audit, then handle system access, payer setup, and workflow migration, and we work outstanding A/R from your previous process. Our onboarding is designed to avoid gaps in billing, so your cash flow isn't interrupted.",
-  },
-];
-
-const billingServices: { title: string; description: string; icon: LucideIcon }[] = [
-  {
-    title: "Patient Registration and Insurance Eligibility Verification",
-    description: "We verify coverage, benefits, co-pays, deductibles, and prior authorization requirements before the patient is seen. Most preventable denials start at the front desk, and we stop them there.",
-    icon: UserRoundCheck,
-  },
-  {
-    title: "Medical Coding (ICD-10, CPT, HCPCS)",
-    description: "Certified coders assign accurate diagnosis and procedure codes based on your clinical documentation. This protects you from undercoding, which loses revenue, and overcoding, which creates audit risk.",
-    icon: ClipboardCheck,
-  },
-  {
-    title: "Charge Entry and Clean Claim Submission",
-    description: "Every claim is scrubbed against payer-specific edits before submission. Clean claims are paid faster and rejected less often.",
+    title: "Faxes",
+    description: "Inbound and outbound faxes are received, sorted, and filed to the right chart instead of sitting in a tray.",
     icon: FileCheck2,
   },
   {
-    title: "Denial Management and Appeals",
-    description: "We don't just resubmit denied claims. We find the root cause, correct it, file strong appeals, and feed the findings back into your process so the same denial doesn't come back.",
-    icon: RefreshCcw,
+    title: "Medical Records",
+    description: "We request, release, and organize medical records with the documentation your team and payers actually need.",
+    icon: ClipboardCheck,
   },
   {
-    title: "Accounts Receivable (A/R) Follow-Up",
-    description: "Our team works aging buckets (30, 60, 90, 120+ days) systematically. No claim is left sitting, and no payer is left unchased.",
-    icon: Wallet,
+    title: "Uploading Patient Charts",
+    description: "Scans, labs, referrals, and outside records are uploaded into the patient chart so nothing is missing at the visit or at claim time.",
+    icon: Upload,
+  },
+];
+
+const billingCycle: { number: string; title: string; description: string; icon: LucideIcon }[] = [
+  {
+    number: "01",
+    title: "Patient Info Verification",
+    description: "Demographics, insurance cards, and contact details are verified before the claim is built so avoidable rejections never start.",
+    icon: UserRoundCheck,
   },
   {
-    title: "Payment Posting and Reconciliation",
-    description: "We post insurance and patient payments accurately, reconcile them against your bank deposits, and flag underpayments against your contracted rates.",
+    number: "02",
+    title: "Eligibility from Payor",
+    description: "We check coverage, benefits, copays, and deductibles with the payor so you know what is billable before the visit closes.",
+    icon: ShieldCheck,
+  },
+  {
+    number: "03",
+    title: "Charge Entry",
+    description: "Charges are entered from the encounter with the correct codes, modifiers, and units so the claim matches the visit.",
     icon: CircleDollarSign,
   },
   {
-    title: "Patient Billing and Collections",
-    description: "Clear statements and a respectful, patient-friendly collections process improve your patient balance recovery without hurting your reputation.",
-    icon: HeartPulse,
+    number: "04",
+    title: "Claim Submission",
+    description: "Clean claims go out to the payor quickly, with edits caught before submission instead of after a denial.",
+    icon: FileCheck2,
   },
   {
-    title: "Provider Credentialing and Enrollment",
-    description: "We handle payer enrollment, re-credentialing, and CAQH management so providers start billing sooner and stay in-network.",
-    icon: BadgeCheck,
+    number: "05",
+    title: "Payment Posting",
+    description: "ERAs and EOBs are posted accurately, underpayments are flagged, and the account stays reconciled.",
+    icon: Wallet,
   },
   {
-    title: "Reporting and Revenue Analytics",
-    description: "You get transparent monthly dashboards covering collections, denial rate, days in A/R, and net collection rate. You always know where your money is.",
+    number: "06",
+    title: "Follow-Up and Denial Handling",
+    description: "Unpaid and denied claims are worked, appealed, and tracked so aging does not sit untouched.",
+    icon: RefreshCcw,
+  },
+  {
+    number: "07",
+    title: "Patient Statements and Patient Callings",
+    description: "Clear statements go out, and patient-balance calls are handled professionally so collections stay respectful and consistent.",
+    icon: Headset,
+  },
+  {
+    number: "08",
+    title: "Reporting",
+    description: "You get transparent reporting on collections, denials, aging, and production so you always know where the money is.",
     icon: BarChart3,
   },
 ];
 
-const processSteps = [
-  { number: "01", title: "Free revenue audit", description: "We review your current claims, denials, and A/R to find leaks." },
-  { number: "02", title: "Onboarding and setup", description: "We connect to your EHR/PM system, payer portals, and clearinghouse, usually within 7 days." },
-  { number: "03", title: "Eligibility and prior authorization", description: "We verify coverage and obtain approvals before the visit." },
-  { number: "04", title: "Coding and charge capture", description: "Certified coders review documentation and assign accurate codes." },
-  { number: "05", title: "Claim scrubbing and submission", description: "Claims go out clean, within 24–48 hours of the visit." },
-  { number: "06", title: "Payment posting", description: "ERAs and EOBs are posted, and variances are flagged." },
-  { number: "07", title: "Denial and A/R recovery", description: "Every rejected, denied, or aging claim gets worked." },
-  { number: "08", title: "Patient billing", description: "Statements are sent, and payment plans and support are offered." },
-  { number: "09", title: "Reporting and optimization", description: "Monthly reviews with a dedicated account manager." },
-];
-
 const reasons = [
-  { title: "Dedicated account manager", description: "You get a named contact, not a ticket number.", icon: Layers3 },
-  { title: "Certified billers and coders", description: "Our team holds credentials such as CPC, CCS, and CPB.", icon: BadgeCheck },
-  { title: "Transparent pricing", description: "No hidden setup fees or surprise charges.", icon: Wallet },
-  { title: "Technology-driven accuracy", description: "Automated claim scrubbing, real-time eligibility checks, and denial analytics.", icon: BarChart3 },
-  { title: "HIPAA-compliant operations", description: "Secure systems, encrypted data, and strict access controls.", icon: Lock },
-  { title: "Works with your software", description: "We work inside your existing EHR and PM platform. You don't have to switch systems.", icon: ShieldCheck },
+  { title: "Front desk plus billing", description: "One team covers remote clinic operations and the full claim cycle, not just one isolated task.", icon: Layers3 },
+  { title: "Works in your EMR", description: "Scheduling, charts, faxes, and charges stay inside the system you already use.", icon: FileText },
+  { title: "Payor-ready claims", description: "Eligibility, verification, and charge entry happen before submission so denials drop.", icon: BadgeCheck },
+  { title: "Patients still feel your brand", description: "Incoming calls, statements, and patient calling follow your scripts and tone.", icon: Phone },
+  { title: "HIPAA-compliant operations", description: "Secure access, encrypted transfer, and role-based chart handling.", icon: Lock },
+  { title: "Clear reporting", description: "You see what was scheduled, billed, paid, and still outstanding every month.", icon: BarChart3 },
 ];
-
-const specialties = [
-  "Internal Medicine Billing",
-  "Cardiology Billing",
-  "Orthopedic Billing",
-  "Mental Health and Behavioral Billing",
-  "Urgent Care Billing",
-  "Radiology Billing",
-  "Pain Management Billing",
-  "Dermatology Billing",
-  "Pediatrics Billing",
-  "Physical Therapy Billing",
-  "Anesthesia Billing",
-  "OB/GYN Billing",
-];
-
-const integrations = ["Epic", "Athenahealth", "eClinicalWorks", "NextGen", "Kareo/Tebra", "AdvancedMD", "Practice Fusion", "DrChrono", "CureMD"];
 
 const resultRows = [
   { metric: "Clean claim rate", average: "~90%", target: "95%+" },
@@ -169,10 +132,55 @@ const resultRows = [
   { metric: "Net collection rate", average: "90–93%", target: "95%+" },
 ];
 
+const integrations = ["Epic", "Athenahealth", "eClinicalWorks", "NextGen", "Kareo/Tebra", "AdvancedMD", "Practice Fusion", "DrChrono", "CureMD"];
+
 const startSteps = [
-  { number: "01", title: "Book a free consultation", description: "Tell us about your practice, specialty, and current billing bottlenecks." },
-  { number: "02", title: "Receive your revenue audit", description: "We show you exactly where claims, denials, and A/R are leaking money." },
-  { number: "03", title: "Go live", description: "We onboard you in about 7 days, and you start seeing cleaner claims and faster follow-up." },
+  { number: "01", title: "Share your workflow", description: "Tell us which front-desk tasks and billing steps you want covered first." },
+  { number: "02", title: "Get an operations review", description: "We map calls, EMR, scheduling, eligibility, claims, and follow-up around your clinic." },
+  { number: "03", title: "Go live", description: "Your remote desk and billing cycle start inside your existing EMR, usually within 7 days." },
+];
+
+const faqs = [
+  {
+    question: "What is included with HS Partners medical billing?",
+    answer:
+      "The billing cycle includes patient info verification, eligibility from the payor, charge entry, claim submission, payment posting, follow-up and denial handling, patient statements and patient calling, and reporting. You can also add remote front desk operations.",
+  },
+  {
+    question: "What does remote front desk cover?",
+    answer:
+      "Remote front desk includes medical assistant support, incoming calls, EMR documentation, patient scheduling, faxes, medical records, and uploading patient charts.",
+  },
+  {
+    question: "Do you work inside our EMR?",
+    answer:
+      "Yes. Scheduling, documentation, chart uploads, charge entry, and payment posting are done in your existing EMR or practice management system. You do not have to switch software.",
+  },
+  {
+    question: "Can we start with only billing or only front desk?",
+    answer:
+      "Yes. Many practices start with the 8-step billing cycle, then add incoming calls, scheduling, or chart work. Others start with remote front desk and add billing once the workflow is stable.",
+  },
+  {
+    question: "How do you handle denials?",
+    answer:
+      "Denied and unpaid claims are followed up, corrected, and appealed. We also feed denial reasons back into verification, eligibility, and charge entry so the same error is less likely to repeat.",
+  },
+  {
+    question: "Who calls patients about balances?",
+    answer:
+      "Our team sends patient statements and makes patient-balance calls using your approved tone and scripts, so collections stay consistent without burdening your in-office staff.",
+  },
+  {
+    question: "Are these services HIPAA compliant?",
+    answer:
+      "Yes. We follow HIPAA privacy and security requirements, use role-based EMR access, encrypt data in transfer, and can sign a Business Associate Agreement.",
+  },
+  {
+    question: "How quickly can we start?",
+    answer:
+      "After EMR access and a short workflow review, most clinics go live within about 7 days.",
+  },
 ];
 
 const jsonLd = {
@@ -181,18 +189,16 @@ const jsonLd = {
     {
       "@type": "MedicalBusiness",
       name: "HS Partners",
-      url: "https://hspartners.com/medical-billing-services",
       telephone: "+1-431-668-3854",
       email: "hello@agenci.com",
       areaServed: "US",
     },
     {
       "@type": "Service",
-      name: "Medical Billing Services",
-      serviceType: "Revenue cycle management and outsourced medical billing",
+      name: "Medical Billing and Remote Front Desk",
+      serviceType: "Remote front desk operations and medical billing",
       provider: { "@type": "Organization", name: "HS Partners" },
-      areaServed: "US",
-      description: "HIPAA-compliant medical billing services that cut denials, speed up reimbursements, and boost collections.",
+      description: "Remote front desk and medical billing: scheduling, EMR, eligibility, claims, payment posting, denials, patient statements, and reporting.",
     },
     {
       "@type": "FAQPage",
@@ -209,9 +215,9 @@ export function MedicalBillingPage() {
   return (
     <main className="relative bg-background">
       <Seo
-        title="Medical Billing Services | Get Paid Faster | HS Partners"
-        description="HIPAA-compliant medical billing services that cut denials, speed up reimbursements, and boost collections. Get a free revenue audit from HS Partners."
-        keywords="medical billing services, medical billing company, outsourced medical billing, revenue cycle management, medical billing and coding, claim denial management, medical billing for physicians"
+        title="Medical Billing & Remote Front Desk | HS Partners"
+        description="Remote front desk and medical billing from HS Partners: incoming calls, EMR, scheduling, eligibility, claims, payment posting, denials, patient statements, and reporting."
+        keywords="medical billing services, remote front desk, patient scheduling, EMR documentation, eligibility verification, claim submission, payment posting, denial handling, patient statements"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <SiteHeader ctaHref="#contact" />
@@ -226,62 +232,65 @@ export function MedicalBillingPage() {
             <span aria-hidden="true">/</span>
             <span className="text-primary">Medical Billing</span>
           </p>
-          <p className="text-xs font-bold uppercase text-primary">Medical billing services</p>
+          <p className="text-xs font-bold uppercase text-primary">Remote front desk + medical billing</p>
           <h1 id="billing-hero-title" className="mt-5 max-w-4xl font-display text-4xl font-black leading-[1.02] text-foreground sm:text-6xl lg:text-7xl">
-            Medical Billing Services That Maximize Your Revenue and <span className="text-electric">Minimize Denials</span>
+            Front Desk Remote and Medical Billing That <span className="text-electric">Keep the Clinic Moving</span>
           </h1>
           <p className="mt-7 max-w-3xl text-base leading-8 text-muted-foreground sm:text-lg">
-            Every unpaid claim is revenue your practice has already earned but hasn't received. <strong className="font-semibold text-foreground">HS Partners</strong> provides end-to-end <strong className="font-semibold text-foreground">medical billing services</strong> for physicians, group practices, clinics, and healthcare organizations. Our certified billers and coders manage the entire revenue cycle, from eligibility verification to final payment posting, so you can focus on patients while we focus on your cash flow.
+            HS Partners runs your <strong className="font-semibold text-foreground">remote front desk</strong> and the full <strong className="font-semibold text-foreground">medical billing cycle</strong> — from incoming calls and EMR charts to eligibility, claims, payment posting, denials, patient statements, and reporting.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a href="#contact" className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-secondary px-6 text-sm font-bold text-secondary-foreground transition-transform hover:-translate-y-0.5">
-              Get Your Free Revenue Audit <ArrowRight className="size-4" aria-hidden="true" />
+            <a href="#front-desk" className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-secondary px-6 text-sm font-bold text-secondary-foreground transition-transform hover:-translate-y-0.5">
+              See Front Desk Ops <ArrowRight className="size-4" aria-hidden="true" />
             </a>
-            <a href="#contact" className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-border px-6 text-sm font-bold text-foreground transition-colors hover:border-primary/60 hover:text-primary">
-              Talk to a Billing Expert
+            <a href="#billing-cycle" className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-border px-6 text-sm font-bold text-foreground transition-colors hover:border-primary/60 hover:text-primary">
+              See Billing Cycle
             </a>
           </div>
         </div>
       </section>
 
-      <section className="relative z-30 border-y border-border bg-card px-5 py-20 sm:py-28" aria-labelledby="what-is-billing-title">
-        <div className="mx-auto grid w-full max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div>
-            <p className="text-xs font-bold uppercase text-primary">The financial backbone</p>
-            <h2 id="what-is-billing-title" className="mt-5 font-display text-4xl font-black leading-[1.05] text-foreground sm:text-5xl">
-              What Is <span className="text-electric">Medical Billing?</span>
-            </h2>
-          </div>
-          <div className="space-y-6 text-base leading-8 text-muted-foreground">
-            <p>
-              <strong className="font-semibold text-foreground">Medical billing</strong> is the process of translating healthcare services into insurance claims, submitting them to payers, following up on unpaid or denied claims, and collecting patient balances. Accurate coding, clean claim submission, and persistent follow-up decide whether you are paid in full, paid late, or not paid at all.
-            </p>
-            <p>
-              Managing this in-house is expensive and complicated. Payer rules change constantly, coding updates arrive every year, and one small error can trigger a denial. Professional <strong className="font-semibold text-foreground">medical billing outsourcing</strong> gives you a dedicated team, proven workflows, and advanced technology without the overhead of hiring and training staff.
-            </p>
-          </div>
+      <section className="relative z-30 border-y border-border bg-card px-5 py-16 sm:py-20">
+        <div className="mx-auto grid w-full max-w-6xl gap-6 md:grid-cols-2">
+          <a href="#front-desk" className="group border border-border bg-background p-8 transition-colors hover:border-primary/50">
+            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-primary">01 — Operations</p>
+            <h2 className="mt-4 font-display text-3xl font-black text-foreground">Front Desk Remote</h2>
+            <p className="mt-4 text-sm leading-7 text-muted-foreground">Medical assistant support, calls, EMR, scheduling, faxes, records, and chart uploads.</p>
+            <span className="mt-6 inline-flex items-center gap-2 text-xs font-bold text-foreground group-hover:text-primary">View operations <ArrowRight className="size-3.5" /></span>
+          </a>
+          <a href="#billing-cycle" className="group border border-border bg-background p-8 transition-colors hover:border-primary/50">
+            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-primary">02 — Revenue</p>
+            <h2 className="mt-4 font-display text-3xl font-black text-foreground">Medical Billing</h2>
+            <p className="mt-4 text-sm leading-7 text-muted-foreground">Verification, eligibility, charge entry, claims, posting, denials, patient calling, and reporting.</p>
+            <span className="mt-6 inline-flex items-center gap-2 text-xs font-bold text-foreground group-hover:text-primary">View billing cycle <ArrowRight className="size-3.5" /></span>
+          </a>
         </div>
       </section>
 
-      <section className="relative z-30 bg-background px-5 py-24 sm:py-32" aria-labelledby="billing-services-title">
+      <section id="front-desk" className="relative z-30 bg-background px-5 py-24 sm:py-32" aria-labelledby="front-desk-title">
         <div className="mx-auto w-full max-w-7xl">
           <div className="mb-16 max-w-3xl">
-            <p className="text-xs font-bold uppercase text-primary">Full revenue cycle</p>
-            <h2 id="billing-services-title" className="mt-5 font-display text-4xl font-black leading-[1.05] text-foreground sm:text-6xl">
-              Our Medical Billing <span className="text-electric">Services</span>
+            <p className="text-xs font-bold uppercase text-primary">All operations</p>
+            <h2 id="front-desk-title" className="mt-5 font-display text-4xl font-black leading-[1.05] text-foreground sm:text-6xl">
+              Front Desk <span className="text-electric">Remote</span>
             </h2>
-            <p className="mt-6 text-base leading-8 text-muted-foreground">We cover the full revenue cycle, not just claim submission.</p>
+            <p className="mt-6 text-base leading-8 text-muted-foreground">
+              Your clinic still sees patients in person. The phones, charts, faxes, and schedule can run remotely — cleanly, and inside your EMR.
+            </p>
           </div>
           <div className="grid grid-cols-1 gap-px border border-border/50 bg-border md:grid-cols-2 lg:grid-cols-3">
-            {billingServices.map((service) => {
-              const Icon = service.icon;
+            {frontDeskOps.map((item, index) => {
+              const Icon = item.icon;
               return (
-                <article key={service.title} className="group relative bg-card p-8 transition-colors hover:bg-card/80 sm:p-10">
-                  <span className="service-icon-badge static mb-7" aria-hidden="true">
-                    <Icon className="size-5" strokeWidth={1.6} />
-                  </span>
-                  <h3 className="font-display text-xl font-bold text-foreground">{service.title}</h3>
-                  <p className="mt-4 text-sm leading-7 text-muted-foreground">{service.description}</p>
+                <article key={item.title} className="group relative bg-card p-8 transition-colors hover:bg-card/80 sm:p-10">
+                  <div className="mb-7 flex items-center justify-between">
+                    <span className="service-icon-badge static" aria-hidden="true">
+                      <Icon className="size-5" strokeWidth={1.6} />
+                    </span>
+                    <span className="font-display text-xs font-bold text-primary">0{index + 1}</span>
+                  </div>
+                  <h3 className="font-display text-xl font-bold text-foreground">{item.title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-muted-foreground">{item.description}</p>
                 </article>
               );
             })}
@@ -289,22 +298,31 @@ export function MedicalBillingPage() {
         </div>
       </section>
 
-      <section className="relative z-30 border-t border-border bg-card px-5 py-24 sm:py-32" aria-labelledby="billing-process-title">
+      <section id="billing-cycle" className="relative z-30 border-t border-border bg-card px-5 py-24 sm:py-32" aria-labelledby="billing-cycle-title">
         <div className="mx-auto w-full max-w-7xl">
           <div className="max-w-3xl">
-            <p className="text-xs font-bold uppercase text-primary">How we work</p>
-            <h2 id="billing-process-title" className="mt-5 font-display text-4xl font-black leading-[1.05] text-foreground sm:text-6xl">
-              Our Medical Billing Process: <span className="text-electric">Step by Step</span>
+            <p className="text-xs font-bold uppercase text-primary">Related to medical billing</p>
+            <h2 id="billing-cycle-title" className="mt-5 font-display text-4xl font-black leading-[1.05] text-foreground sm:text-6xl">
+              Medical Billing <span className="text-electric">Cycle</span>
             </h2>
+            <p className="mt-6 text-base leading-8 text-muted-foreground">
+              Eight steps from patient information to reporting. This is the work we actually do — nothing extra piled on.
+            </p>
           </div>
-          <ol className="mt-16 grid gap-px border border-border/50 bg-border md:grid-cols-3">
-            {processSteps.map((step) => (
-              <li key={step.number} className="bg-card p-7 sm:p-8">
-                <span className="font-display text-sm font-bold text-primary">{step.number}</span>
-                <h3 className="mt-6 font-display text-xl font-bold text-foreground">{step.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-muted-foreground">{step.description}</p>
-              </li>
-            ))}
+          <ol className="mt-16 grid gap-px border border-border/50 bg-border md:grid-cols-2 xl:grid-cols-4">
+            {billingCycle.map((step) => {
+              const Icon = step.icon;
+              return (
+                <li key={step.number} className="relative bg-background p-7 sm:p-8">
+                  <div className="flex items-center justify-between">
+                    <span className="font-display text-sm font-bold text-primary">{step.number}</span>
+                    <Icon className="size-5 text-primary" strokeWidth={1.6} aria-hidden="true" />
+                  </div>
+                  <h3 className="mt-8 font-display text-xl font-bold text-foreground">{step.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground">{step.description}</p>
+                </li>
+              );
+            })}
           </ol>
         </div>
       </section>
@@ -315,9 +333,9 @@ export function MedicalBillingPage() {
             <div>
               <p className="text-xs font-bold uppercase text-primary">Why HS Partners</p>
               <h2 id="why-billing-title" className="mt-5 font-display text-4xl font-black leading-[1.05] text-foreground sm:text-5xl">
-                Why Practices Choose <span className="text-electric">HS Partners</span>
+                One Team for the Desk and the <span className="text-electric">Claim</span>
               </h2>
-              <p className="mt-6 text-sm leading-7 text-muted-foreground">No long lock-in. We earn your business every month.</p>
+              <p className="mt-6 text-sm leading-7 text-muted-foreground">Front desk work and billing stay connected, so a missed eligibility check does not become a denial two weeks later.</p>
             </div>
             <div className="grid gap-px border border-border/50 bg-border sm:grid-cols-2">
               {reasons.map((reason) => {
@@ -334,10 +352,10 @@ export function MedicalBillingPage() {
           </div>
 
           <div className="mt-20">
-            <h3 className="font-display text-2xl font-bold text-foreground sm:text-3xl">Results That Speak for Themselves</h3>
-            <div className="mt-8 overflow-hidden border border-border">
-              <table className="w-full text-left text-sm">
-                <caption className="sr-only">Industry benchmarks versus HS Partners targets for medical billing performance</caption>
+            <h3 className="font-display text-2xl font-bold text-foreground sm:text-3xl">Results We Work Toward</h3>
+            <div className="mt-8 overflow-x-auto border border-border">
+              <table className="w-full min-w-[32rem] text-left text-sm">
+                <caption className="sr-only">Industry benchmarks versus HS Partners billing targets</caption>
                 <thead className="bg-card text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
                   <tr>
                     <th className="px-5 py-4">Metric</th>
@@ -361,36 +379,14 @@ export function MedicalBillingPage() {
         </div>
       </section>
 
-      <section id="specialties" className="relative z-30 border-t border-border bg-background px-5 py-24 sm:py-32" aria-labelledby="specialties-title">
-        <div className="mx-auto w-full max-w-7xl">
-          <div className="max-w-3xl">
-            <p className="text-xs font-bold uppercase text-primary">Specialty workflows</p>
-            <h2 id="specialties-title" className="mt-5 font-display text-4xl font-black leading-[1.05] text-foreground sm:text-6xl">
-              Medical Billing Services <span className="text-electric">by Specialty</span>
-            </h2>
-            <p className="mt-6 text-base leading-8 text-muted-foreground">
-              Different specialties have different coding rules, payer requirements, and denial patterns. We build specialty-specific workflows for:
-            </p>
-          </div>
-          <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {specialties.map((specialty) => (
-              <div key={specialty} className="flex items-center gap-3 border border-border bg-card px-5 py-4">
-                <Stethoscope className="size-4 shrink-0 text-primary" aria-hidden="true" />
-                <span className="font-display text-sm font-bold text-foreground">{specialty}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="relative z-30 border-t border-border bg-card px-5 py-24 sm:py-32" aria-labelledby="integrations-title">
         <div className="mx-auto w-full max-w-6xl">
-          <p className="text-xs font-bold uppercase text-primary">Works with your stack</p>
+          <p className="text-xs font-bold uppercase text-primary">Works with your EMR</p>
           <h2 id="integrations-title" className="mt-5 max-w-3xl font-display text-4xl font-black leading-[1.05] text-foreground sm:text-5xl">
-            EHR, PM Software, and Clearinghouse <span className="text-electric">Integrations</span>
+            Documentation, Scheduling, and Billing in <span className="text-electric">Your System</span>
           </h2>
           <p className="mt-6 max-w-3xl text-base leading-8 text-muted-foreground">
-            We work with the most widely used systems. If your system isn't listed, ask us. Chances are we already work with it.
+            We work inside the EMR and practice tools you already use for charts, faxes, eligibility, and claims.
           </p>
           <div className="mt-12 flex flex-wrap gap-3">
             {integrations.map((name) => (
@@ -407,11 +403,11 @@ export function MedicalBillingPage() {
           <div>
             <p className="text-xs font-bold uppercase text-primary">Trust and compliance</p>
             <h2 id="compliance-title" className="mt-5 font-display text-4xl font-black leading-[1.05] text-foreground sm:text-5xl">
-              Security and Compliance You Can <span className="text-electric">Trust</span>
+              Charts, Calls, and Claims You Can <span className="text-electric">Trust</span>
             </h2>
           </div>
           <p className="text-base leading-8 text-muted-foreground">
-            Protecting patient data is not optional. Our operations follow <strong className="font-semibold text-foreground">HIPAA</strong> requirements, with encrypted data transfer, role-based access, regular staff training, and signed Business Associate Agreements (BAA). Our coding practices follow current <strong className="font-semibold text-foreground">CMS, AMA, and payer guidelines</strong> to keep you audit-ready.
+            Remote front desk and billing both touch protected health information. HS Partners follows <strong className="font-semibold text-foreground">HIPAA</strong> requirements, uses encrypted transfer, limits EMR access by role, and can sign a Business Associate Agreement (BAA).
           </p>
         </div>
       </section>
@@ -420,10 +416,10 @@ export function MedicalBillingPage() {
         <div className="mx-auto w-full max-w-6xl">
           <p className="text-xs font-bold uppercase text-primary">Clear pricing</p>
           <h2 id="pricing-title" className="mt-5 max-w-3xl font-display text-4xl font-black leading-[1.05] text-foreground sm:text-5xl">
-            How Much Do Medical Billing Services <span className="text-electric">Cost?</span>
+            How Much Do These Services <span className="text-electric">Cost?</span>
           </h2>
           <p className="mt-6 max-w-3xl text-base leading-8 text-muted-foreground">
-            Most medical billing companies charge a <strong className="font-semibold text-foreground">percentage of collections</strong>, and the rate depends on specialty, claim volume, and service scope. Some offer flat-fee or per-claim pricing. At HS Partners, we offer <strong className="font-semibold text-foreground">hybrid pricing</strong> tailored to your practice, with everything clearly stated upfront.
+            Billing is typically a <strong className="font-semibold text-foreground">percentage of collections</strong>. Remote front desk can be monthly or hybrid, depending on call volume and hours. HS Partners states the scope in writing — no surprise setup fees.
           </p>
           <a href="#contact" className="mt-8 inline-flex h-12 items-center gap-2 rounded-lg bg-secondary px-6 text-sm font-bold text-secondary-foreground transition-transform hover:-translate-y-0.5">
             Request a Custom Quote <ArrowRight className="size-4" aria-hidden="true" />
@@ -446,10 +442,10 @@ export function MedicalBillingPage() {
             ))}
           </ol>
           <div className="mt-16 border border-border bg-card px-6 py-10 sm:px-10">
-            <h3 className="font-display text-3xl font-black text-foreground">Ready to Stop Losing Revenue?</h3>
+            <h3 className="font-display text-3xl font-black text-foreground">Ready for a Remote Desk and a Cleaner Claim Cycle?</h3>
             <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center">
               <a href="#contact" className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-secondary px-6 text-sm font-bold text-secondary-foreground transition-transform hover:-translate-y-0.5">
-                Schedule Your Free Billing Audit <ArrowRight className="size-4" aria-hidden="true" />
+                Book a Workflow Review <ArrowRight className="size-4" aria-hidden="true" />
               </a>
               <a href="tel:+14316683854" className="inline-flex items-center gap-2 text-sm font-bold text-foreground transition-colors hover:text-primary">
                 <Phone className="size-4" aria-hidden="true" /> +1 431 668 3854
@@ -463,8 +459,8 @@ export function MedicalBillingPage() {
         <div className="mx-auto grid w-full max-w-6xl gap-14 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
           <div>
             <p className="text-xs font-bold uppercase text-primary">Frequently asked</p>
-            <h2 id="billing-faq-title" className="mt-5 font-display text-5xl font-black leading-none text-foreground sm:text-6xl">
-              Questions about <span className="text-electric">medical billing.</span>
+            <h2 id="billing-faq-title" className="mt-5 font-display text-4xl font-black leading-none text-foreground sm:text-6xl">
+              Questions about <span className="text-electric">front desk and billing.</span>
             </h2>
             <p className="mt-7 max-w-sm text-sm leading-7 text-muted-foreground">Need something more specific? Start a conversation and we’ll point you in the right direction.</p>
             <a href="mailto:hello@agenci.com" className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-foreground transition-colors hover:text-primary">
@@ -474,12 +470,12 @@ export function MedicalBillingPage() {
           <div className="border-t border-border">
             {faqs.map((faq, index) => (
               <details key={faq.question} className="group border-b border-border py-1">
-                <summary className="flex min-h-24 cursor-pointer list-none items-center gap-5 py-5 text-left [&::-webkit-details-marker]:hidden">
-                  <span className="font-display text-xs font-bold text-primary">{String(index + 1).padStart(2, "0")}</span>
-                  <span className="font-display text-lg font-bold text-foreground sm:text-xl">{faq.question}</span>
-                  <ChevronDown className="ml-auto size-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180 group-open:text-primary" aria-hidden="true" />
+                <summary className="flex min-h-20 cursor-pointer list-none items-start gap-3 py-5 text-left sm:min-h-24 sm:items-center sm:gap-5 [&::-webkit-details-marker]:hidden">
+                  <span className="mt-1 font-display text-xs font-bold text-primary sm:mt-0">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="font-display text-base font-bold text-foreground sm:text-xl">{faq.question}</span>
+                  <ChevronDown className="ml-auto mt-1 size-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180 group-open:text-primary sm:mt-0" aria-hidden="true" />
                 </summary>
-                <p className="max-w-2xl pb-8 pl-10 pr-8 text-sm leading-7 text-muted-foreground">{faq.answer}</p>
+                <p className="max-w-2xl pb-8 pl-8 pr-4 text-sm leading-7 text-muted-foreground sm:pl-10 sm:pr-8">{faq.answer}</p>
               </details>
             ))}
           </div>

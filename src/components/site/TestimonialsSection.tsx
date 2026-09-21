@@ -62,7 +62,7 @@ export function TestimonialsSection() {
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Client voices</p>
-            <h2 id="testimonials-title" className="mt-5 font-display text-5xl font-black leading-none text-foreground sm:text-7xl">
+            <h2 id="testimonials-title" className="mt-5 font-display text-4xl font-black leading-none text-foreground sm:text-7xl">
               TRUSTED BY <span className="text-outline block">OPERATORS.</span>
             </h2>
           </div>
@@ -86,26 +86,26 @@ export function TestimonialsSection() {
           </div>
         </div>
 
-        <div className="relative mt-14 overflow-hidden rounded-3xl border border-border bg-background p-8 sm:mt-20 sm:p-14">
-          <Quote className="absolute right-8 top-8 size-16 text-primary/15" aria-hidden="true" />
+        <div className="relative mt-14 overflow-hidden rounded-3xl border border-border bg-background p-6 sm:mt-20 sm:p-14">
+          <Quote className="absolute right-5 top-5 size-12 text-primary/15 sm:right-8 sm:top-8 sm:size-16" aria-hidden="true" />
           <div key={index} className="testimonial-slide relative z-10">
             <div className="flex items-center gap-1 text-primary" aria-label="Rated 5 out of 5">
               {Array.from({ length: 5 }).map((_, star) => (
                 <Star key={star} className="size-4 fill-current" aria-hidden="true" />
               ))}
             </div>
-            <blockquote className="mt-7 max-w-3xl font-display text-2xl font-semibold leading-[1.35] text-foreground sm:text-3xl">
+            <blockquote className="mt-7 max-w-3xl font-display text-xl font-semibold leading-[1.35] text-foreground sm:text-3xl">
               “{active.quote}”
             </blockquote>
-            <div className="mt-10 flex flex-wrap items-center gap-6 border-t border-border pt-7">
+            <div className="mt-10 flex flex-wrap items-center gap-4 border-t border-border pt-7 sm:gap-6">
               <span className="flex size-12 items-center justify-center rounded-full bg-secondary font-display text-sm font-bold text-secondary-foreground" aria-hidden="true">
                 {active.name.split(" ").slice(-2).map((part) => part[0]).join("")}
               </span>
-              <div>
+              <div className="min-w-0">
                 <p className="font-display text-base font-bold text-foreground">{active.name}</p>
                 <p className="text-xs text-muted-foreground">{active.role}</p>
               </div>
-              <p className="ml-auto rounded-full border border-primary/40 px-4 py-2 text-xs font-bold text-primary">{active.result}</p>
+              <p className="w-full rounded-full border border-primary/40 px-4 py-2 text-center text-xs font-bold text-primary sm:ml-auto sm:w-auto">{active.result}</p>
             </div>
           </div>
         </div>

@@ -1,41 +1,7 @@
-import {
-  ArrowRight,
-  CalendarCheck,
-  ChevronDown,
-  CircleDollarSign,
-  ClipboardCheck,
-  HeartPulse,
-  Radio,
-  Target,
-  Truck,
-  UtensilsCrossed,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-
-type MenuItem = { title: string; description: string; icon: LucideIcon; href: string };
-
-const groups: { label: string; items: MenuItem[] }[] = [
-  {
-    label: "Healthcare",
-    items: [
-      { title: "Medical Billing", description: "Clean claims and faster reimbursements.", icon: CircleDollarSign, href: "/medical-billing-services" },
-      { title: "Patient Screening", description: "Organized intake before every visit.", icon: ClipboardCheck, href: "/patient-screening-services" },
-      { title: "Ultrasound Services", description: "Scheduling built around patients.", icon: HeartPulse, href: "/ultrasound-services" },
-      { title: "X-Ray Services", description: "Dependable imaging coordination.", icon: Radio, href: "/x-ray-services" },
-    ],
-  },
-  {
-    label: "Business",
-    items: [
-      { title: "Lead Management", description: "Qualify and nurture every enquiry.", icon: Target, href: "/lead-management-services" },
-      { title: "Truck Dispatching", description: "Loads, routes, and driver support.", icon: Truck, href: "/truck-dispatching-services" },
-      { title: "Fast Food Solutions", description: "Keep every rush hour moving.", icon: UtensilsCrossed, href: "/fast-food-solutions" },
-      { title: "Appointments", description: "Simple booking and reminders.", icon: CalendarCheck, href: "/appointment-scheduling-services" },
-    ],
-  },
-];
+import { serviceGroups } from "@/content/nav-services";
 
 export function ServicesMegaMenu() {
   const [open, setOpen] = useState(false);
@@ -77,7 +43,7 @@ export function ServicesMegaMenu() {
       >
         <div className="overflow-hidden rounded-2xl border border-border bg-card/95 shadow-2xl backdrop-blur-xl">
           <div className="grid gap-px bg-border md:grid-cols-[1fr_1fr_0.85fr]">
-            {groups.map((group) => (
+            {serviceGroups.map((group) => (
               <div key={group.label} className="bg-card p-5">
                 <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.3em] text-primary">{group.label}</p>
                 <ul className="flex flex-col gap-1">

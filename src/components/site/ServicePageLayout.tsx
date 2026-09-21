@@ -297,8 +297,8 @@ export function ServicePageLayout({ page }: { page: ServicePageContent }) {
 
           <div className="mt-20">
             <h3 className="font-display text-2xl font-bold text-foreground sm:text-3xl">{page.results.title}</h3>
-            <div className="mt-8 overflow-hidden border border-border">
-              <table className="w-full text-left text-sm">
+            <div className="mt-8 overflow-x-auto border border-border">
+              <table className="w-full min-w-[32rem] text-left text-sm">
                 <caption className="sr-only">{page.results.caption}</caption>
                 <thead className="bg-card text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
                   <tr>
@@ -417,7 +417,7 @@ export function ServicePageLayout({ page }: { page: ServicePageContent }) {
         <div className="mx-auto grid w-full max-w-6xl gap-14 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
           <div>
             <p className="text-xs font-bold uppercase text-primary">Frequently asked</p>
-            <h2 id="service-faq-title" className="mt-5 font-display text-5xl font-black leading-none text-foreground sm:text-6xl">
+            <h2 id="service-faq-title" className="mt-5 font-display text-4xl font-black leading-none text-foreground sm:text-6xl">
               Questions about <span className="text-electric">{page.faq.titleAccent}</span>
             </h2>
             <p className="mt-7 max-w-sm text-sm leading-7 text-muted-foreground">Need something more specific? Start a conversation and we’ll point you in the right direction.</p>
@@ -428,12 +428,12 @@ export function ServicePageLayout({ page }: { page: ServicePageContent }) {
           <div className="border-t border-border">
             {page.faq.items.map((faq, index) => (
               <details key={faq.question} className="group border-b border-border py-1">
-                <summary className="flex min-h-24 cursor-pointer list-none items-center gap-5 py-5 text-left [&::-webkit-details-marker]:hidden">
-                  <span className="font-display text-xs font-bold text-primary">{String(index + 1).padStart(2, "0")}</span>
-                  <span className="font-display text-lg font-bold text-foreground sm:text-xl">{faq.question}</span>
-                  <ChevronDown className="ml-auto size-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180 group-open:text-primary" aria-hidden="true" />
+                <summary className="flex min-h-20 cursor-pointer list-none items-start gap-3 py-5 text-left sm:min-h-24 sm:items-center sm:gap-5 [&::-webkit-details-marker]:hidden">
+                  <span className="mt-1 font-display text-xs font-bold text-primary sm:mt-0">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="font-display text-base font-bold text-foreground sm:text-xl">{faq.question}</span>
+                  <ChevronDown className="ml-auto mt-1 size-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180 group-open:text-primary sm:mt-0" aria-hidden="true" />
                 </summary>
-                <p className="max-w-2xl pb-8 pl-10 pr-8 text-sm leading-7 text-muted-foreground">{faq.answer}</p>
+                <p className="max-w-2xl pb-8 pl-8 pr-4 text-sm leading-7 text-muted-foreground sm:pl-10 sm:pr-8">{faq.answer}</p>
               </details>
             ))}
           </div>
