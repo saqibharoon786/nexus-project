@@ -1,26 +1,21 @@
-# Remix of Remix of Remix of Exactly This Color
+# HS Partners
 
-ya dakho ya color theme h isi color theme ma ya section mjujy acha sa exactly yahi chiya acha sa
+React + TypeScript website for HS Partners.
 
-This project was built with [Lovable](https://lovable.dev).
-
-**Live app**: https://vivid-vibes-theme.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/857600b0-1354-45c1-a520-164e10aaec50).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Run locally
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm install
 npm run dev
 ```
+
+## Build for deploy
+
+```sh
+npm run build
+```
+
+This creates a static `dist/` folder. Upload that folder to Netlify, Vercel, Cloudflare Pages, GitHub Pages, or any static host.
+
+- **Vercel / Netlify:** connect the repo and set build command `npm run build`, publish directory `dist`.
+- SPA routing is already handled (`vercel.json` and `public/_redirects`).

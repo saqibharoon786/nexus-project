@@ -1,0 +1,23 @@
+# Roadmap
+- [x] Build seven full-screen service scenes
+- [x] Add upward/downward scroll transitions and service indicators
+- [x] Verify desktop and mobile layouts
+- [x] Restore the original opening hero before services
+- [x] Remove service counters and upper labels
+- [x] Add a service-specific glass form beside every service
+- [x] Recheck the full scroll journey on desktop and mobile
+- [x] Add Truck Dispatching and reorder all eight service scenes
+- [x] Add the black About Us section with cinematic team image
+- [x] Add premium "Our Expertise" services grid after About Us
+- [x] Add four premium supporting sections after Our Expertise
+- [x] Add a complete branded footer
+- [x] Add testimonial slider section
+- [x] Add animated scroll-drawn path section
+- [x] Add stylish Services mega menu in the navbar
+- [x] Add sliding brand partners section
+- [ ] Raise form placeholder text contrast (currently too dim to read)
+- [ ] Stop the large service title from sitting under the sticky bar on phones
+- [ ] Decide where enquiry form submissions should go (now only shows a thank-you)
+- [x] Add About, Blog, and Testimonials links to the main navigation
+- [x] Add a polished enquiry form before the footer
+- [x] Add three flagged phone contacts to the footer
