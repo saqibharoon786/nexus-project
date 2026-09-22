@@ -5,8 +5,7 @@ import { Button } from "@/components/ui/button";
 const services = [
   "Medical Billing",
   "Patient Screening",
-  "Ultrasound Services",
-  "X-Ray Services",
+  "Teleradiology & Remote Radiology",
   "Fast Food Solutions",
   "Lead Management",
   "Truck Dispatching",

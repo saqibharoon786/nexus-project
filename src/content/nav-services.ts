@@ -1,9 +1,8 @@
 import {
+  Activity,
   CalendarCheck,
   CircleDollarSign,
   ClipboardCheck,
-  HeartPulse,
-  Radio,
   Target,
   Truck,
   UtensilsCrossed,
@@ -23,8 +22,7 @@ export const serviceGroups: { label: string; items: NavServiceItem[] }[] = [
     items: [
       { title: "Medical Billing", description: "Remote front desk and full billing cycle.", icon: CircleDollarSign, href: "/medical-billing-services" },
       { title: "Patient Screening", description: "Organized intake before every visit.", icon: ClipboardCheck, href: "/patient-screening-services" },
-      { title: "Ultrasound Services", description: "Scheduling built around patients.", icon: HeartPulse, href: "/ultrasound-services" },
-      { title: "X-Ray Services", description: "Dependable imaging coordination.", icon: Radio, href: "/x-ray-services" },
+      { title: "Teleradiology & Remote Radiology", description: "Ultrasound, X-ray, and color Doppler reporting.", icon: Activity, href: "/teleradiology-remote-radiology" },
     ],
   },
   {

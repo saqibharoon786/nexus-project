@@ -6,11 +6,10 @@ import {
   CircleDollarSign,
   Clock3,
   ClipboardCheck,
-  HeartPulse,
+  Activity,
   Layers3,
   Mail,
   MessagesSquare,
-  Radio,
   Rocket,
   Search,
   Settings2,
@@ -22,8 +21,10 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { BrandPartners } from "@/components/site/BrandPartners";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
+import { HomeServiceDetails } from "@/components/site/HomeServiceDetails";
 import { JourneyPath } from "@/components/site/JourneyPath";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -33,7 +34,6 @@ import billingImg from "@/assets/service-billing.jpg";
 import fastfoodImg from "@/assets/service-fastfood.jpg";
 import leadsImg from "@/assets/service-leads.jpg";
 import screeningImg from "@/assets/service-screening.jpg";
-import xrayImg from "@/assets/service-xray.jpg";
 import ultrasoundImg from "@/assets/service-ultrasound.jpg";
 import appointmentsImg from "@/assets/service-appointments.jpg";
 import truckingImg from "@/assets/service-trucking.jpg";
@@ -50,6 +50,7 @@ type Service = {
   icon: LucideIcon;
   image: string;
   imageAlt: string;
+  href: string;
 };
 
 type TrustMetric = {
@@ -60,7 +61,7 @@ type TrustMetric = {
 };
 
 const trustMetrics: TrustMetric[] = [
-  { value: 8, suffix: "", label: "Specialized services", tone: "text-primary" },
+  { value: 7, suffix: "", label: "Specialized services", tone: "text-primary" },
   { value: 24, suffix: "/7", label: "Dispatch support", tone: "text-trust-cool" },
   { value: 98, suffix: "%", label: "Clean claim rate", tone: "text-trust-growth" },
   { value: 3, suffix: "×", label: "Faster response", tone: "text-trust-warm" },
@@ -78,6 +79,7 @@ const services: Service[] = [
     icon: CircleDollarSign,
     image: billingImg,
     imageAlt: "Medical billing desk with revenue charts and stethoscope under blue light",
+    href: "/medical-billing-services",
   },
   {
     number: "02",
@@ -90,33 +92,23 @@ const services: Service[] = [
     icon: ClipboardCheck,
     image: screeningImg,
     imageAlt: "Nurse screening a patient with a tablet in a blue-lit clinic",
+    href: "/patient-screening-services",
   },
   {
     number: "03",
-    kicker: "Care in every detail",
-    title: "Ultrasound",
-    accent: "Services",
-    description: "Seamless ultrasound scheduling and support designed around patients, clinicians, and timely results.",
-    metric: "Clear",
-    metricLabel: "patient guidance",
-    icon: HeartPulse,
+    kicker: "Ultrasound · X-Ray · Color Doppler",
+    title: "Teleradiology &",
+    accent: "Remote Radiology",
+    description: "Remote reporting for ultrasound, X-ray, and color Doppler — structured reports, overflow cover, and secure PACS/RIS handoff.",
+    metric: "24/7",
+    metricLabel: "reporting coverage",
+    icon: Activity,
     image: ultrasoundImg,
     imageAlt: "Ultrasound machine with glowing sonogram monitor in a dark room",
+    href: "/teleradiology-remote-radiology",
   },
   {
     number: "04",
-    kicker: "Clarity you can trust",
-    title: "X-Ray",
-    accent: "Services",
-    description: "Efficient diagnostic imaging coordination with dependable scheduling and patient communication.",
-    metric: "Fast",
-    metricLabel: "diagnostic workflow",
-    icon: Radio,
-    image: xrayImg,
-    imageAlt: "X-ray imaging room with glowing chest scan on a lightboard",
-  },
-  {
-    number: "05",
     kicker: "Built for busy counters",
     title: "Fast Food",
     accent: "Solutions",
@@ -126,9 +118,10 @@ const services: Service[] = [
     icon: UtensilsCrossed,
     image: fastfoodImg,
     imageAlt: "Gourmet burger and fries on a counter under cinematic spotlight",
+    href: "/fast-food-solutions",
   },
   {
-    number: "06",
+    number: "05",
     kicker: "Every inquiry, handled",
     title: "Lead",
     accent: "Management",
@@ -138,9 +131,10 @@ const services: Service[] = [
     icon: Target,
     image: leadsImg,
     imageAlt: "Glowing lead funnel flowing into a target over a workstation",
+    href: "/lead-management-services",
   },
   {
-    number: "07",
+    number: "06",
     kicker: "Every mile, coordinated",
     title: "Truck",
     accent: "Dispatching",
@@ -150,9 +144,10 @@ const services: Service[] = [
     icon: Truck,
     image: truckingImg,
     imageAlt: "Truck dispatcher monitoring routes and fleet operations in a cinematic control room",
+    href: "/truck-dispatching-services",
   },
   {
-    number: "08",
+    number: "07",
     kicker: "Less waiting. More care.",
     title: "Doctor–Patient",
     accent: "Appointments",
@@ -162,56 +157,6 @@ const services: Service[] = [
     icon: CalendarCheck,
     image: appointmentsImg,
     imageAlt: "Doctor shaking hands with a patient across a desk at night",
-  },
-];
-
-const expertiseServices: Array<Pick<Service, "title" | "description" | "icon"> & { href?: string }> = [
-  {
-    title: "Medical Billing",
-    description: "Remote front desk plus the full billing cycle — calls, EMR, scheduling, eligibility, claims, and reporting.",
-    icon: CircleDollarSign,
-    href: "/medical-billing-services",
-  },
-  {
-    title: "Patient Screening",
-    description: "Organized intake and pre-visit screening that gives care teams the right information sooner.",
-    icon: ClipboardCheck,
-    href: "/patient-screening-services",
-  },
-  {
-    title: "Ultrasound Services",
-    description: "Seamless ultrasound scheduling and support designed around patients, clinicians, and timely results.",
-    icon: HeartPulse,
-    href: "/ultrasound-services",
-  },
-  {
-    title: "X-Ray Services",
-    description: "Efficient diagnostic imaging coordination with dependable scheduling and patient communication.",
-    icon: Radio,
-    href: "/x-ray-services",
-  },
-  {
-    title: "Fast Food Solutions",
-    description: "Smarter ordering and customer workflows that keep every rush moving without friction.",
-    icon: UtensilsCrossed,
-    href: "/fast-food-solutions",
-  },
-  {
-    title: "Lead Management",
-    description: "Capture, qualify, and nurture every prospect with focused follow-ups that turn interest into action.",
-    icon: Target,
-    href: "/lead-management-services",
-  },
-  {
-    title: "Truck Dispatching",
-    description: "Reliable load coordination, route support, and driver communication that keeps trucks moving.",
-    icon: Truck,
-    href: "/truck-dispatching-services",
-  },
-  {
-    title: "Appointments",
-    description: "Simple booking, helpful reminders, and dependable coordination from first contact to consultation.",
-    icon: CalendarCheck,
     href: "/appointment-scheduling-services",
   },
 ];
@@ -344,7 +289,7 @@ export function HomePage() {
     <main className="relative bg-background" id="home">
       <Seo
         title="HS Partners — Business & Healthcare Services"
-        description="Medical billing, patient screening, diagnostic imaging, appointments, lead management, and fast food solutions from HS Partners."
+        description="Medical billing, patient screening, teleradiology, appointments, lead management, and fast food solutions from HS Partners."
       />
       <section className="relative" id="services" aria-label="Our services">
         <div className="sticky top-0 h-screen overflow-hidden hero-aura">
@@ -393,9 +338,12 @@ export function HomePage() {
                         <span className="h-8 w-px bg-foreground/25" />
                         <div className="text-[10px] uppercase text-foreground/70">{service.metricLabel}</div>
                       </div>
-                      <div className="mt-8 flex w-full justify-center sm:w-auto sm:justify-start">
-                        <a href="#contact" className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-secondary px-6 text-sm font-bold text-secondary-foreground transition-transform hover:-translate-y-0.5 sm:w-auto">
-                          Book a call <ArrowRight className="size-4" aria-hidden="true" />
+                      <div className="mt-8 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:justify-start">
+                        <Link to={service.href} className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-secondary px-6 text-sm font-bold text-secondary-foreground transition-transform hover:-translate-y-0.5 sm:w-auto">
+                          View this service <ArrowRight className="size-4" aria-hidden="true" />
+                        </Link>
+                        <a href="#expertise" className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg border border-border px-6 text-sm font-bold text-foreground transition-colors hover:border-primary/60 hover:text-primary sm:w-auto">
+                          What’s included
                         </a>
                       </div>
                     </div>
@@ -488,60 +436,7 @@ export function HomePage() {
     </div>
   </section>
 
-  <section id="expertise" className="relative z-30 overflow-hidden bg-background px-5 py-24 sm:py-32 lg:py-40" aria-label="Our expertise">
-    <div className="mx-auto w-full max-w-7xl">
-      <div className="mb-16 md:mb-24">
-        <div className="mb-6 flex items-center gap-4">
-          <div className="h-px w-12 bg-primary" aria-hidden="true" />
-          <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Our Expertise</span>
-        </div>
-        <h2 className="font-display text-4xl font-black leading-none tracking-normal text-foreground sm:text-7xl lg:text-8xl">
-          SPECIALIZED
-          <span className="text-outline block">SOLUTIONS.</span>
-        </h2>
-      </div>
-
-      <div className="grid grid-cols-1 gap-px border border-border/50 bg-border md:grid-cols-2 lg:grid-cols-4">
-        {expertiseServices.map((service) => {
-          const Icon = service.icon;
-          const card = (
-            <>
-              <div
-                className="absolute -right-8 -top-8 size-32 bg-primary/5 blur-3xl transition-all duration-500 group-hover:bg-primary/15"
-                aria-hidden="true"
-              />
-              <div className="relative z-10">
-                <span className="service-icon-badge static mb-8" aria-hidden="true">
-                  <Icon className="size-5" strokeWidth={1.6} />
-                </span>
-                <h3 className="font-display text-xl font-bold text-foreground">{service.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground transition-colors group-hover:text-foreground/80">
-                  {service.description}
-                </p>
-              </div>
-            </>
-          );
-
-          return service.href ? (
-            <a
-              key={service.title}
-              href={service.href}
-              className="group relative bg-card p-8 transition-all duration-500 hover:bg-card/80 sm:p-10"
-            >
-              {card}
-            </a>
-          ) : (
-            <div
-              key={service.title}
-              className="group relative bg-card p-8 transition-all duration-500 hover:bg-card/80 sm:p-10"
-            >
-              {card}
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  </section>
+  <HomeServiceDetails />
 
   <JourneyPath />
 

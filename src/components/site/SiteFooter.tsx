@@ -34,8 +34,7 @@ export function SiteFooter() {
             <div className="mt-6 flex flex-col gap-4 text-sm text-muted-foreground">
               <Link to="/medical-billing-services" className="transition-colors hover:text-foreground">Medical billing</Link>
               <Link to="/patient-screening-services" className="transition-colors hover:text-foreground">Patient screening</Link>
-              <Link to="/ultrasound-services" className="transition-colors hover:text-foreground">Ultrasound services</Link>
-              <Link to="/x-ray-services" className="transition-colors hover:text-foreground">X-ray services</Link>
+              <Link to="/teleradiology-remote-radiology" className="transition-colors hover:text-foreground">Teleradiology & remote radiology</Link>
               <Link to="/lead-management-services" className="transition-colors hover:text-foreground">Lead management</Link>
               <Link to="/truck-dispatching-services" className="transition-colors hover:text-foreground">Truck dispatching</Link>
               <Link to="/fast-food-solutions" className="transition-colors hover:text-foreground">Fast food solutions</Link>
@@ -52,7 +51,7 @@ export function SiteFooter() {
 
         <div className="flex flex-col gap-4 pt-8 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 HS Partners. All rights reserved.</p>
-          <p>One team. Eight specialties.</p>
+          <p>One team. Focused specialties.</p>
         </div>
       </div>
     </footer>
