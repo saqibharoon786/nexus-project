@@ -419,28 +419,28 @@ export function FrontDeskRemotePage() {
         </div>
       </section>
 
-      <section className="relative z-30 border-t border-border bg-about px-5 py-24 sm:py-32" aria-labelledby="agent-spotlight-title">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
-          <figure className="mx-auto w-full max-w-sm">
+      <section className="relative z-30 border-t border-border bg-about px-5 py-16 sm:py-20" aria-labelledby="agent-spotlight-title">
+        <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-8 sm:flex-row sm:items-center sm:gap-10">
+          <figure className="w-36 shrink-0 sm:w-44">
             <img
               src={agentImg}
               alt="Nadia Rahman, front desk lead"
               width={768}
               height={1024}
-              className="aspect-[3/4] w-full rounded-[1.75rem] object-cover object-top shadow-2xl"
+              className="aspect-[3/4] w-full rounded-2xl object-cover object-top shadow-xl"
             />
-            <figcaption className="mt-5 flex flex-col items-center gap-2">
-              <span className="inline-flex items-center gap-1 text-primary" aria-label="Rated 5 out of 5">
+            <figcaption className="mt-3 flex flex-col items-center gap-1">
+              <span className="inline-flex items-center gap-0.5 text-primary" aria-label="Rated 5 out of 5">
                 {Array.from({ length: 5 }).map((_, index) => (
-                  <Star key={index} className="size-5 fill-current" aria-hidden="true" />
+                  <Star key={index} className="size-3.5 fill-current" aria-hidden="true" />
                 ))}
               </span>
-              <span className="text-sm font-bold tracking-wide text-foreground">5.0</span>
+              <span className="text-xs font-bold tracking-wide text-foreground">5.0</span>
             </figcaption>
           </figure>
-          <div>
+          <div className="text-center sm:text-left">
             <p className="text-xs font-bold uppercase text-primary">Your front desk lead</p>
-            <h2 id="agent-spotlight-title" className="mt-5 font-display text-4xl font-black leading-[1.05] text-foreground sm:text-6xl">
+            <h2 id="agent-spotlight-title" className="mt-3 font-display text-2xl font-black leading-tight text-foreground sm:text-3xl">
               Nadia <span className="text-electric">Rahman</span>
             </h2>
             <p className="mt-3 text-sm font-bold uppercase tracking-[0.16em] text-primary">Front desk lead</p>
@@ -549,11 +549,12 @@ export function FrontDeskRemotePage() {
             ))}
           </div>
 
-          <div className="mt-14 overflow-hidden rounded-[1.75rem] bg-[#071633] px-4 py-10 sm:px-8 sm:py-12">
-            <p className="text-center text-[11px] font-bold uppercase tracking-[0.22em] text-[#3dff8a] sm:text-xs">
-              Platforms your front desk is trained on
-            </p>
-            <div className="marquee mt-8" aria-hidden="true">
+          <div className="mt-16">
+            <h3 className="mx-auto max-w-3xl text-center font-display text-3xl font-black leading-[1.15] text-foreground sm:text-4xl">
+              Platforms our Remote Front Desk Operations Specialists are <span className="text-electric">currently using</span>
+            </h3>
+            <div className="mt-8 overflow-hidden rounded-[1.75rem] bg-[#071633] px-4 py-10 sm:px-8 sm:py-12">
+            <div className="marquee" aria-hidden="true">
               <div className="marquee-track items-stretch">
                 {[...platforms, ...platforms].map((item, index) => {
                   const Icon = item.icon;
@@ -576,6 +577,7 @@ export function FrontDeskRemotePage() {
                 <li key={item.name}>{item.name}</li>
               ))}
             </ul>
+            </div>
           </div>
         </div>
       </section>
