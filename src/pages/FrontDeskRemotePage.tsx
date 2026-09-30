@@ -4,9 +4,12 @@ import {
   CalendarCheck,
   ChevronDown,
   ClipboardCheck,
+  Droplets,
   FileText,
+  FlaskConical,
   FolderOpen,
   Headset,
+  LayoutDashboard,
   Lock,
   Mail,
   Phone,
@@ -20,6 +23,7 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
+import { FrontDeskAgent } from "@/components/site/FrontDeskAgent";
 import { Seo } from "@/components/site/Seo";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -28,6 +32,7 @@ import acuityImg from "@/assets/software-acuity.png";
 import evexiaImg from "@/assets/software-evexia.png";
 import practiceFusionImg from "@/assets/software-practice-fusion.png";
 import oomaImg from "@/assets/software-ooma.png";
+import agentImg from "@/assets/front-desk-agent.jpg";
 
 const operations: { title: string; description: string; icon: LucideIcon }[] = [
   {
@@ -178,24 +183,54 @@ const software = [
   },
 ];
 
+const platforms: { name: string; icon: LucideIcon; badge: string }[] = [
+  { name: "Labcorp", icon: FlaskConical, badge: "bg-[#1a56db] text-white" },
+  { name: "Acuity Scheduling", icon: CalendarCheck, badge: "bg-[#111827] text-white" },
+  { name: "Evexia", icon: Droplets, badge: "bg-[#0284c7] text-white" },
+  { name: "Practice Fusion", icon: LayoutDashboard, badge: "bg-[#2563eb] text-white" },
+  { name: "Ooma Office", icon: Phone, badge: "bg-[#0f2744] text-white" },
+];
+
 const testimonials = [
   {
-    quote: "The phones used to roll to voicemail every afternoon. Now calls are answered in our name and the message is already in the chart.",
-    name: "Clinic manager",
-    role: "Multi-provider primary care",
+    quote: "Our afternoon phones used to dump into voicemail. The remote desk answers in our practice name, and the message is already in the chart before I walk back to my office.",
+    name: "Emily Hart",
+    role: "Family physician",
+    place: "Austin, Texas, USA",
     result: "Live answer coverage",
+    rating: 5,
   },
   {
-    quote: "Faxes and outside labs were the pile nobody owned. They land in the chart the same day, matched to the right patient.",
-    name: "Office coordinator",
-    role: "Outpatient specialty clinic",
+    quote: "Faxes and outside labs were a pile nobody owned. They now land on the right chart the same day. My coordinators finally stopped hunting for missing records.",
+    name: "James O'Connor",
+    role: "Practice manager",
+    place: "Toronto, Canada",
     result: "Same-day chart filing",
+    rating: 5,
   },
   {
-    quote: "Scheduling follows our visit lengths. We stopped finding 15-minute slots booked as new-patient exams.",
-    name: "Practice administrator",
-    role: "Independent physician group",
+    quote: "Scheduling follows our visit lengths. We stopped finding fifteen-minute slots booked as new-patient exams. The calendar finally matches how the clinic actually runs.",
+    name: "Sophie Lang",
+    role: "Clinic director",
+    place: "Manchester, United Kingdom",
     result: "Templates held",
+    rating: 5,
+  },
+  {
+    quote: "Chart uploads used to happen after the patient was already in the room. Labs, referrals, and insurance cards are in the EMR before the visit starts.",
+    name: "Michael Reyes",
+    role: "Medical director",
+    place: "Phoenix, Arizona, USA",
+    result: "Charts ready on arrival",
+    rating: 5,
+  },
+  {
+    quote: "Incoming calls, EMR notes, and record requests feel like one desk, not three vendors. The handoff at close of day is something my in-office team can actually read.",
+    name: "Claire Dubois",
+    role: "Operations lead",
+    place: "Montreal, Canada",
+    result: "One desk, clear handoff",
+    rating: 5,
   },
 ];
 
@@ -226,6 +261,7 @@ export function FrontDeskRemotePage() {
   const [slide, setSlide] = useState(0);
   const [paused, setPaused] = useState(false);
   const [quote, setQuote] = useState(0);
+  const [reviewsPaused, setReviewsPaused] = useState(false);
 
   const goSlide = useCallback((next: number) => {
     setSlide((next + software.length) % software.length);
@@ -237,6 +273,17 @@ export function FrontDeskRemotePage() {
     const timer = window.setInterval(() => setSlide((value) => (value + 1) % software.length), 5000);
     return () => window.clearInterval(timer);
   }, [paused]);
+
+  const goQuote = useCallback((next: number) => {
+    setQuote((next + testimonials.length) % testimonials.length);
+  }, []);
+
+  useEffect(() => {
+    if (reviewsPaused) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(() => setQuote((value) => (value + 1) % testimonials.length), 6500);
+    return () => window.clearInterval(timer);
+  }, [reviewsPaused]);
 
   const activeSoftware = software[slide]!;
   const activeQuote = testimonials[quote]!;
@@ -372,6 +419,41 @@ export function FrontDeskRemotePage() {
         </div>
       </section>
 
+      <section className="relative z-30 border-t border-border bg-about px-5 py-24 sm:py-32" aria-labelledby="agent-spotlight-title">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
+          <figure className="mx-auto w-full max-w-sm">
+            <img
+              src={agentImg}
+              alt="Nadia Rahman, front desk lead"
+              width={768}
+              height={1024}
+              className="aspect-[3/4] w-full rounded-[1.75rem] object-cover object-top shadow-2xl"
+            />
+            <figcaption className="mt-5 flex flex-col items-center gap-2">
+              <span className="inline-flex items-center gap-1 text-primary" aria-label="Rated 5 out of 5">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <Star key={index} className="size-5 fill-current" aria-hidden="true" />
+                ))}
+              </span>
+              <span className="text-sm font-bold tracking-wide text-foreground">5.0</span>
+            </figcaption>
+          </figure>
+          <div>
+            <p className="text-xs font-bold uppercase text-primary">Your front desk lead</p>
+            <h2 id="agent-spotlight-title" className="mt-5 font-display text-4xl font-black leading-[1.05] text-foreground sm:text-6xl">
+              Nadia <span className="text-electric">Rahman</span>
+            </h2>
+            <p className="mt-3 text-sm font-bold uppercase tracking-[0.16em] text-primary">Front desk lead</p>
+            <p className="mt-6 text-base leading-8 text-muted-foreground">
+              Nadia is the person clinics hear first. She keeps incoming calls, the schedule, EMR notes, faxes, and chart uploads moving in your practice name — then hands the day back with a list your office can actually read.
+            </p>
+            <p className="mt-4 text-base leading-8 text-muted-foreground">
+              Clinics rate the desk she runs five stars. Ask her anything from the chat, or send the enquiry form if you want this coverage on your line.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="relative z-30 bg-background px-5 py-24 sm:py-32" aria-labelledby="team-title">
         <div className="mx-auto w-full max-w-7xl">
           <div className="max-w-3xl">
@@ -466,44 +548,98 @@ export function FrontDeskRemotePage() {
               </button>
             ))}
           </div>
+
+          <div className="mt-14 overflow-hidden rounded-[1.75rem] bg-[#071633] px-4 py-10 sm:px-8 sm:py-12">
+            <p className="text-center text-[11px] font-bold uppercase tracking-[0.22em] text-[#3dff8a] sm:text-xs">
+              Platforms your front desk is trained on
+            </p>
+            <div className="marquee mt-8" aria-hidden="true">
+              <div className="marquee-track items-stretch">
+                {[...platforms, ...platforms].map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <article
+                      key={`${item.name}-${index}`}
+                      className="flex h-52 w-60 shrink-0 flex-col items-center justify-center rounded-2xl bg-white px-6 text-center shadow-lg"
+                    >
+                      <span className={`flex size-14 items-center justify-center rounded-2xl ${item.badge}`} aria-hidden="true">
+                        <Icon className="size-7" strokeWidth={1.7} />
+                      </span>
+                      <h3 className="mt-5 font-display text-lg font-bold text-slate-900">{item.name}</h3>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+            <ul className="sr-only">
+              {platforms.map((item) => (
+                <li key={item.name}>{item.name}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
-      <section className="relative z-30 bg-background px-5 py-24 sm:py-32" aria-labelledby="desk-testimonials-title">
+      <section
+        className="relative z-30 bg-background px-5 py-24 sm:py-32"
+        aria-labelledby="desk-testimonials-title"
+        onMouseEnter={() => setReviewsPaused(true)}
+        onMouseLeave={() => setReviewsPaused(false)}
+      >
         <div className="mx-auto w-full max-w-6xl">
           <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
             <div>
-              <p className="text-xs font-bold uppercase text-primary">From the clinics we cover</p>
+              <p className="text-xs font-bold uppercase text-primary">5.0 from clinics abroad</p>
               <h2 id="desk-testimonials-title" className="mt-5 font-display text-4xl font-black leading-none text-foreground sm:text-6xl">
-                What changes when the desk <span className="text-electric">is covered.</span>
+                Five-star reviews from <span className="text-electric">the front desk.</span>
               </h2>
             </div>
             <div className="flex items-center gap-3">
-              <button type="button" onClick={() => setQuote((value) => (value - 1 + testimonials.length) % testimonials.length)} aria-label="Previous story" className="flex size-11 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-primary hover:text-primary">
+              <button type="button" onClick={() => goQuote(quote - 1)} aria-label="Previous review" className="flex size-11 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-primary hover:text-primary">
                 <ArrowLeft className="size-4" aria-hidden="true" />
               </button>
-              <button type="button" onClick={() => setQuote((value) => (value + 1) % testimonials.length)} aria-label="Next story" className="flex size-11 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-primary hover:text-primary">
+              <button type="button" onClick={() => goQuote(quote + 1)} aria-label="Next review" className="flex size-11 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-primary hover:text-primary">
                 <ArrowRight className="size-4" aria-hidden="true" />
               </button>
             </div>
           </div>
           <div className="relative mt-12 overflow-hidden rounded-3xl border border-border bg-card p-6 sm:p-14">
             <Quote className="absolute right-6 top-6 size-12 text-primary/15" aria-hidden="true" />
-            <div className="flex items-center gap-1 text-primary" aria-label="Rated 5 out of 5">
-              {Array.from({ length: 5 }).map((_, star) => (
-                <Star key={star} className="size-4 fill-current" aria-hidden="true" />
-              ))}
-            </div>
-            <blockquote className="mt-7 max-w-3xl font-display text-xl font-semibold leading-[1.35] text-foreground sm:text-3xl">
-              “{activeQuote.quote}”
-            </blockquote>
-            <div className="mt-10 flex flex-wrap items-center gap-4 border-t border-border pt-7">
-              <div>
-                <p className="font-display text-base font-bold text-foreground">{activeQuote.name}</p>
-                <p className="text-xs text-muted-foreground">{activeQuote.role}</p>
+            <div key={activeQuote.name} className="testimonial-slide relative z-10">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1 text-primary" aria-label={`${activeQuote.rating} out of 5 stars`}>
+                  {Array.from({ length: activeQuote.rating }).map((_, star) => (
+                    <Star key={star} className="size-5 fill-current" aria-hidden="true" />
+                  ))}
+                </div>
+                <span className="text-sm font-bold text-foreground">{activeQuote.rating}.0</span>
               </div>
-              <p className="rounded-full border border-primary/40 px-4 py-2 text-xs font-bold text-primary sm:ml-auto">{activeQuote.result}</p>
+              <blockquote className="mt-7 max-w-3xl font-display text-xl font-semibold leading-[1.35] text-foreground sm:text-3xl">
+                “{activeQuote.quote}”
+              </blockquote>
+              <div className="mt-10 flex flex-wrap items-center gap-4 border-t border-border pt-7">
+                <span className="flex size-12 items-center justify-center rounded-full bg-secondary font-display text-sm font-bold text-secondary-foreground" aria-hidden="true">
+                  {activeQuote.name.split(" ").map((part) => part[0]).join("")}
+                </span>
+                <div>
+                  <p className="font-display text-base font-bold text-foreground">{activeQuote.name}</p>
+                  <p className="text-xs text-muted-foreground">{activeQuote.role} · {activeQuote.place}</p>
+                </div>
+                <p className="rounded-full border border-primary/40 px-4 py-2 text-xs font-bold text-primary sm:ml-auto">{activeQuote.result}</p>
+              </div>
             </div>
+          </div>
+          <div className="mt-8 flex items-center justify-center gap-2">
+            {testimonials.map((item, index) => (
+              <button
+                key={item.name}
+                type="button"
+                onClick={() => goQuote(index)}
+                aria-label={`Show review from ${item.name}`}
+                aria-current={index === quote ? "true" : undefined}
+                className={`h-2 rounded-full transition-all ${index === quote ? "w-8 bg-primary" : "w-2 bg-border"}`}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -563,6 +699,7 @@ export function FrontDeskRemotePage() {
 
       <EnquiryForm defaultService="Front Desk Remote" />
       <SiteFooter />
+      <FrontDeskAgent />
     </main>
   );
 }
