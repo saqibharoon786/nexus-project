@@ -5,10 +5,10 @@ import {
   appointmentsPage,
   fastFoodPage,
   leadManagementPage,
-  patientScreeningPage,
   truckDispatchingPage,
 } from "@/content/service-pages";
 import { HomePage } from "@/pages/HomePage";
+import { FrontDeskRemotePage } from "@/pages/FrontDeskRemotePage";
 import { MedicalBillingPage } from "@/pages/MedicalBillingPage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { TeleradiologyPage } from "@/pages/TeleradiologyPage";
@@ -39,7 +39,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/medical-billing-services" element={<MedicalBillingPage />} />
-        <Route path="/patient-screening-services" element={<ServicePageLayout page={patientScreeningPage} />} />
+        <Route path="/front-desk-remote" element={<FrontDeskRemotePage />} />
+        <Route path="/patient-screening-services" element={<Navigate to="/front-desk-remote" replace />} />
         <Route path="/teleradiology-remote-radiology" element={<TeleradiologyPage />} />
         <Route path="/ultrasound-services" element={<Navigate to="/teleradiology-remote-radiology" replace />} />
         <Route path="/x-ray-services" element={<Navigate to="/teleradiology-remote-radiology" replace />} />

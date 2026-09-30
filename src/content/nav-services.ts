@@ -2,7 +2,7 @@ import {
   Activity,
   CalendarCheck,
   CircleDollarSign,
-  ClipboardCheck,
+  Headset,
   Target,
   Truck,
   UtensilsCrossed,
@@ -21,7 +21,7 @@ export const serviceGroups: { label: string; items: NavServiceItem[] }[] = [
     label: "Healthcare",
     items: [
       { title: "Medical Billing", description: "Remote front desk and full billing cycle.", icon: CircleDollarSign, href: "/medical-billing-services" },
-      { title: "Patient Screening", description: "Organized intake before every visit.", icon: ClipboardCheck, href: "/patient-screening-services" },
+      { title: "Front Desk Remote", description: "Calls, charts, scheduling, faxes, and records.", icon: Headset, href: "/front-desk-remote" },
       { title: "Teleradiology & Remote Radiology", description: "Ultrasound, X-ray, and color Doppler reporting.", icon: Activity, href: "/teleradiology-remote-radiology" },
     ],
   },

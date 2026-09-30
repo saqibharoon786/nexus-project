@@ -647,7 +647,7 @@ export function TeleradiologyPage() {
           <p className="text-xs font-bold uppercase text-primary">Related services</p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link to="/medical-billing-services" className="border border-border bg-background px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-foreground transition-colors hover:border-primary/60 hover:text-primary">Medical Billing</Link>
-            <Link to="/patient-screening-services" className="border border-border bg-background px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-foreground transition-colors hover:border-primary/60 hover:text-primary">Patient Screening</Link>
+            <Link to="/front-desk-remote" className="border border-border bg-background px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-foreground transition-colors hover:border-primary/60 hover:text-primary">Front Desk Remote</Link>
             <Link to="/appointment-scheduling-services" className="border border-border bg-background px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-foreground transition-colors hover:border-primary/60 hover:text-primary">Appointments</Link>
           </div>
           <a href="tel:+14316683854" className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-foreground transition-colors hover:text-primary">

@@ -33,7 +33,7 @@ export function SiteFooter() {
             <h2 className="text-xs font-bold uppercase text-primary">Services</h2>
             <div className="mt-6 flex flex-col gap-4 text-sm text-muted-foreground">
               <Link to="/medical-billing-services" className="transition-colors hover:text-foreground">Medical billing</Link>
-              <Link to="/patient-screening-services" className="transition-colors hover:text-foreground">Patient screening</Link>
+              <Link to="/front-desk-remote" className="transition-colors hover:text-foreground">Front desk remote</Link>
               <Link to="/teleradiology-remote-radiology" className="transition-colors hover:text-foreground">Teleradiology & remote radiology</Link>
               <Link to="/lead-management-services" className="transition-colors hover:text-foreground">Lead management</Link>
               <Link to="/truck-dispatching-services" className="transition-colors hover:text-foreground">Truck dispatching</Link>

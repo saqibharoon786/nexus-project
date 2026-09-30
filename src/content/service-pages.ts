@@ -285,7 +285,7 @@ export const ultrasoundPage: ServicePageContent = {
   },
   related: [
     { label: "Teleradiology & Remote Radiology", href: "/teleradiology-remote-radiology" },
-    { label: "Patient Screening", href: "/patient-screening-services" },
+    { label: "Front Desk Remote", href: "/front-desk-remote" },
     { label: "Appointments", href: "/appointment-scheduling-services" },
   ],
 };
@@ -430,7 +430,7 @@ export const xrayPage: ServicePageContent = {
   },
   related: [
     { label: "Teleradiology & Remote Radiology", href: "/teleradiology-remote-radiology" },
-    { label: "Patient Screening", href: "/patient-screening-services" },
+    { label: "Front Desk Remote", href: "/front-desk-remote" },
     { label: "Medical Billing", href: "/medical-billing-services" },
   ],
 };
@@ -1009,7 +1009,7 @@ export const appointmentsPage: ServicePageContent = {
     ],
   },
   related: [
-    { label: "Patient Screening", href: "/patient-screening-services" },
+    { label: "Front Desk Remote", href: "/front-desk-remote" },
     { label: "Medical Billing", href: "/medical-billing-services" },
     { label: "Teleradiology & Remote Radiology", href: "/teleradiology-remote-radiology" },
   ],

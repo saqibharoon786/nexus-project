@@ -5,7 +5,7 @@ import {
   ChevronDown,
   CircleDollarSign,
   Clock3,
-  ClipboardCheck,
+  Headset,
   Activity,
   Layers3,
   Mail,
@@ -83,16 +83,16 @@ const services: Service[] = [
   },
   {
     number: "02",
-    kicker: "Better decisions begin here",
-    title: "Patient",
-    accent: "Screening",
-    description: "Organized intake and pre-visit screening that gives care teams the right information sooner.",
-    metric: "Safe",
-    metricLabel: "structured intake",
-    icon: ClipboardCheck,
+    kicker: "All operations",
+    title: "Front Desk",
+    accent: "Remote",
+    description: "Medical assistant support, incoming calls, EMR documentation, scheduling, faxes, records, and chart uploads.",
+    metric: "Live",
+    metricLabel: "desk coverage",
+    icon: Headset,
     image: screeningImg,
-    imageAlt: "Nurse screening a patient with a tablet in a blue-lit clinic",
-    href: "/patient-screening-services",
+    imageAlt: "Clinic desk prepared for remote call, chart, and scheduling coverage",
+    href: "/front-desk-remote",
   },
   {
     number: "03",
@@ -289,7 +289,7 @@ export function HomePage() {
     <main className="relative bg-background" id="home">
       <Seo
         title="HS Partners — Business & Healthcare Services"
-        description="Medical billing, patient screening, teleradiology, appointments, lead management, and fast food solutions from HS Partners."
+        description="Medical billing, front desk remote, teleradiology, appointments, lead management, and fast food solutions from HS Partners."
       />
       <section className="relative" id="services" aria-label="Our services">
         <div className="sticky top-0 h-screen overflow-hidden hero-aura">
